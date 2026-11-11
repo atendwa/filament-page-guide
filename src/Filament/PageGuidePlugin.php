@@ -22,11 +22,11 @@ class PageGuidePlugin implements Plugin
     }
 
     /**
-     * @param  array<int, string|null>  $lines
+     * @param  array<int, mixed>  $lines
      */
     public function footer(array $lines): self
     {
-        config(['page-guide.footer' => array_values(array_filter($lines, filled(...)))]);
+        config(['page-guide.footer' => array_values(array_filter($lines, fn (mixed $line): bool => is_string($line) && $line !== ''))]);
 
         return $this;
     }

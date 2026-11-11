@@ -1,0 +1,9 @@
+.fi-modal-content:has(.guide-modal) {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
+
+.fi-modal-footer:has(.guide-close-btn) {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}

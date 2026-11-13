@@ -1,7 +1,13 @@
 {
     "name": "atendwa/filament-page-guide",
     "description": "A \"Guide\" button and modal for Filament pages, showing a Blade view that explains the page.",
-    "keywords": ["laravel", "filament", "filament-plugin", "help", "guide"],
+    "keywords": [
+        "laravel",
+        "filament",
+        "filament-plugin",
+        "help",
+        "guide"
+    ],
     "homepage": "https://github.com/atendwa/filament-page-guide",
     "license": "MIT",
     "authors": [
@@ -59,6 +65,15 @@
             "pestphp/pest-plugin": true,
             "phpstan/extension-installer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "policy": {
+            "cooldown": {
+                "period": "48 hours",
+                "ignore": [
+                    "strathmore/*",
+                    "atendwa/*"
+                ]
+            }
         }
     },
     "minimum-stability": "stable",

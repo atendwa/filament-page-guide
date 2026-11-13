@@ -7,3 +7,4 @@
 /phpstan.neon.dist export-ignore
 /pint.json export-ignore
 /rector.php export-ignore
+/phpinsights.php export-ignore

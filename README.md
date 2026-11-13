@@ -1,5 +1,11 @@
 # Filament Page Guide
 
+[![Latest Version](https://img.shields.io/packagist/v/atendwa/filament-page-guide)](https://packagist.org/packages/atendwa/filament-page-guide)
+[![PHP](https://img.shields.io/packagist/dependency-v/atendwa/filament-page-guide/php)](composer.json)
+[![Laravel](https://img.shields.io/packagist/dependency-v/atendwa/filament-page-guide/illuminate%2Fsupport?label=laravel)](composer.json)
+[![Filament](https://img.shields.io/packagist/dependency-v/atendwa/filament-page-guide/filament%2Ffilament?label=filament)](composer.json)
+[![Tests](https://github.com/atendwa/filament-page-guide/actions/workflows/tests.yml/badge.svg?branch=develop)](https://github.com/atendwa/filament-page-guide/actions/workflows/tests.yml)
+
 Adds a **Guide** button to Filament pages. It opens a full-width modal that shows a Blade view explaining the page: what it is for,
 what each part means and how to use it.
 
@@ -79,12 +85,19 @@ PageGuidePlugin::make()
 - `decoration()` takes the name of a Blade component rendered beside the guide on large screens (for example an
   illustration). It receives a `class` attribute to fill the space.
 
+The plugin stores both in the `page-guide.footer` and `page-guide.decoration` config keys, so they can also be set with
+`config([...])` in a service provider.
+
 ## Testing
 
 ```bash
 composer install
 composer quality   # Pint, Rector, PHPStan (max), Pest
 ```
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 

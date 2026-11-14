@@ -1,17 +1,18 @@
-# Filament Page Guide
+# atendwa/filament-page-guide
 
-[![Latest Version](https://img.shields.io/packagist/v/atendwa/filament-page-guide)](https://packagist.org/packages/atendwa/filament-page-guide)
-[![PHP](https://img.shields.io/packagist/dependency-v/atendwa/filament-page-guide/php)](composer.json)
-[![Laravel](https://img.shields.io/packagist/dependency-v/atendwa/filament-page-guide/illuminate%2Fsupport?label=laravel)](composer.json)
-[![Filament](https://img.shields.io/packagist/dependency-v/atendwa/filament-page-guide/filament%2Ffilament?label=filament)](composer.json)
-[![Tests](https://github.com/atendwa/filament-page-guide/actions/workflows/tests.yml/badge.svg?branch=develop)](https://github.com/atendwa/filament-page-guide/actions/workflows/tests.yml)
+[![PHP](https://img.shields.io/packagist/dependency-v/atendwa/filament-page-guide/php?label=php&color=777BB4)](composer.json)
+[![Laravel](https://img.shields.io/packagist/dependency-v/atendwa/filament-page-guide/illuminate%2Fsupport?label=laravel&color=FF2D20)](composer.json)
+[![Filament](https://img.shields.io/packagist/dependency-v/atendwa/filament-page-guide/filament%2Ffilament?label=filament&color=FDAE4B)](composer.json)
+[![Release](https://img.shields.io/packagist/v/atendwa/filament-page-guide?label=release&color=007EC6)](https://packagist.org/packages/atendwa/filament-page-guide)
+[![CI](https://github.com/atendwa/filament-page-guide/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/atendwa/filament-page-guide/actions/workflows/ci.yml)
 
-Adds a **Guide** button to Filament pages. It opens a full-width modal that shows a Blade view explaining the page: what it is for,
-what each part means and how to use it.
+Adds a **Guide** button to Filament pages. It opens a full-width modal that shows a Blade view explaining the page: what it
+is for, what each part means and how to use it. Guides are plain Blade views, so they live with your application and can use
+any HTML. Nothing is shown when a page has no guide, or when its view does not exist.
 
-- Filament 5, Laravel 12 or 13, PHP 8.3+.
-- Guides are plain Blade views, so they live with your application and can use any HTML.
-- Nothing is shown when a page has no guide, or when its view does not exist.
+## Requirements
+
+PHP 8.3 or later, Laravel 12 or 13 and Filament 5.
 
 ## Installation
 
@@ -31,7 +32,24 @@ $panel->plugins([
 
 Then run `php artisan filament:assets` so the stylesheet is published.
 
-## Adding a guide to a page
+## Configuration
+
+Both are off by default. Set them on the plugin:
+
+```php
+PageGuidePlugin::make()
+    ->footer(['Kind regards,', 'The support team', 'support@example.com'])
+    ->decoration('components.guide-artwork');
+```
+
+- `footer()` takes lines shown at the bottom of every guide (empty lines are skipped). The first line is emphasised.
+- `decoration()` takes the name of a Blade component rendered beside the guide on large screens (for example an
+  illustration). It receives a `class` attribute to fill the space.
+
+The plugin stores both in the `page-guide.footer` and `page-guide.decoration` config keys, so they can also be set with
+`config([...])` in a service provider.
+
+## Usage
 
 Use the trait on any Filament page (list, view, custom pages) and name the guide view:
 
@@ -64,29 +82,12 @@ Write the guide with the component the package provides:
 </x-pageguide::partials.guide>
 ```
 
-### Optional customisation
+## Extending
 
 | Method | Effect |
 |---|---|
 | `getPageGuideHeading()` | modal heading; defaults to the page heading followed by "Guide" |
 | `getPageGuideIcon()` | modal icon; defaults to `heroicon-o-book-open` |
-
-## Footer and decoration
-
-Both are off by default. Set them on the plugin:
-
-```php
-PageGuidePlugin::make()
-    ->footer(['Kind regards,', 'The support team', 'support@example.com'])
-    ->decoration('components.guide-artwork');
-```
-
-- `footer()` takes lines shown at the bottom of every guide (empty lines are skipped). The first line is emphasised.
-- `decoration()` takes the name of a Blade component rendered beside the guide on large screens (for example an
-  illustration). It receives a `class` attribute to fill the space.
-
-The plugin stores both in the `page-guide.footer` and `page-guide.decoration` config keys, so they can also be set with
-`config([...])` in a service provider.
 
 ## Testing
 

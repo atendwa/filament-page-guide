@@ -13,7 +13,9 @@
         @if(filled(config('page-guide.footer')))
             <div class="italic flex-shrink-0">
                 @foreach(config('page-guide.footer') as $line)
-                    <p @class(['text-lg text-slate-900 dark:text-white' => $loop->first, 'text-slate-600 dark:text-gray-400' => ! $loop->first])>{{ $line }}</p>
+                    <p @class(['text-lg text-slate-900 dark:text-white' => $loop->first, 'text-slate-600 dark:text-gray-400' => ! $loop->first])>
+                        {{ $line }}
+                    </p>
                 @endforeach
             </div>
         @endif

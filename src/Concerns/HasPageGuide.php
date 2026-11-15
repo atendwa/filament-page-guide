@@ -64,17 +64,16 @@ trait HasPageGuide
             ->modalSubmitAction(action: false)->modalIconColor('info')
             ->modalContent(fn () => $this->getPageGuideContent())->modal()
             ->label('Guide')->modalIcon($this->getPageGuideIcon())
-            ->modalCancelAction(
-                fn (Action $action): Action => $action
-                    ->extraAttributes(['class' => 'guide-close-btn'])
-                    ->icon('heroicon-o-x-mark')
-                    ->label('Close')
+            ->modalCancelAction(fn (Action $action): Action => $action
+                ->extraAttributes(['class' => 'guide-close-btn'])
+                ->icon('heroicon-o-x-mark')
+                ->label('Close')
             );
     }
 
     protected function resolvePageGuideView(): ?ViewContract
     {
-        if ($this->getPageGuide() === null || ! $this->hasPageGuide()) {
+        if (blank($this->getPageGuide()) || ! $this->hasPageGuide()) {
             return null;
         }
 

@@ -30,8 +30,8 @@ abstract class TestCase extends Orchestra
     {
         parent::setUp();
 
-        View::addNamespace('guides', __DIR__ . '/views');
         Blade::anonymousComponentPath(__DIR__ . '/views', 'guides');
+        View::addNamespace('guides', __DIR__ . '/views');
     }
 
     #[Override]
@@ -40,18 +40,18 @@ abstract class TestCase extends Orchestra
         return [
             BladeCaptureDirectiveServiceProvider::class,
             BladeHeroiconsServiceProvider::class,
+            NotificationsServiceProvider::class,
             BladeIconsServiceProvider::class,
+            InfolistsServiceProvider::class,
+            PageGuideServiceProvider::class,
             LivewireServiceProvider::class,
+            FilamentServiceProvider::class,
             SupportServiceProvider::class,
             SchemasServiceProvider::class,
             ActionsServiceProvider::class,
-            FormsServiceProvider::class,
-            InfolistsServiceProvider::class,
-            NotificationsServiceProvider::class,
-            TablesServiceProvider::class,
             WidgetsServiceProvider::class,
-            FilamentServiceProvider::class,
-            PageGuideServiceProvider::class,
+            TablesServiceProvider::class,
+            FormsServiceProvider::class,
         ];
     }
 }

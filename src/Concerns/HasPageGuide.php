@@ -26,7 +26,9 @@ trait HasPageGuide
     {
         $heading = $this->getHeading();
 
-        return ($heading instanceof Htmlable ? strip_tags($heading->toHtml()) : $heading) . ' Guide';
+        $title = $heading instanceof Htmlable ? strip_tags($heading->toHtml()) : $heading;
+
+        return $title . ' Guide';
     }
 
     public function getPageGuideIcon(): string

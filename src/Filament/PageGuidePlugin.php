@@ -26,8 +26,10 @@ class PageGuidePlugin implements Plugin
      */
     public function footer(array $lines): self
     {
+        $footer = array_filter($lines, fn (mixed $line): bool => is_string($line) && $line !== '');
+
         config([
-            'page-guide.footer' => array_values(array_filter($lines, fn (mixed $line): bool => is_string($line) && $line !== '')),
+            'page-guide.footer' => array_values($footer),
         ]);
 
         return $this;
@@ -42,7 +44,10 @@ class PageGuidePlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        $css = Css::make('page-guide-styles', __DIR__ . '/../../resources/css/page-guide.css');
+        $css = Css::make(
+            'page-guide-styles',
+            __DIR__ . '/../../resources/css/page-guide.css',
+        );
 
         FilamentAsset::register([$css], package: 'atendwa/filament-page-guide');
     }

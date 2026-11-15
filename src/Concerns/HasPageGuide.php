@@ -41,6 +41,11 @@ trait HasPageGuide
         return filled($name) && view()->exists($name);
     }
 
+    public function isMissingPageGuide(): bool
+    {
+        return ! $this->hasPageGuide();
+    }
+
     /**
      * @return array<int, Action>
      *
@@ -73,10 +78,10 @@ trait HasPageGuide
 
     protected function resolvePageGuideView(): ?ViewContract
     {
-        if (blank($this->getPageGuide()) || ! $this->hasPageGuide()) {
+        if ($this->isMissingPageGuide()) {
             return null;
         }
 
-        return View::file(View::getFinder()->find($this->getPageGuide()));
+        return View::file(View::getFinder()->find((string) $this->getPageGuide()));
     }
 }

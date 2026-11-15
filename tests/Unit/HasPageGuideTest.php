@@ -53,3 +53,9 @@ it('reads an HTML page heading as plain text', function (): void {
 
     expect($page->getPageGuideHeading())->toBe('Widgets Guide');
 });
+
+it('says a page without a guide view is missing its guide', function (): void {
+    expect((new GuidedPage(null, 'Widgets'))->isMissingPageGuide())->toBeTrue()
+        ->and((new GuidedPage('guides::nope', 'Widgets'))->isMissingPageGuide())->toBeTrue()
+        ->and((new GuidedPage('guides::widgets', 'Widgets'))->isMissingPageGuide())->toBeFalse();
+});

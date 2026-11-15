@@ -4,7 +4,8 @@
 [![Laravel](https://img.shields.io/packagist/dependency-v/atendwa/filament-page-guide/illuminate%2Fsupport?label=laravel&color=FF2D20)](composer.json)
 [![Filament](https://img.shields.io/packagist/dependency-v/atendwa/filament-page-guide/filament%2Ffilament?label=filament&color=FDAE4B)](composer.json)
 [![Release](https://img.shields.io/packagist/v/atendwa/filament-page-guide?label=release&color=007EC6)](https://packagist.org/packages/atendwa/filament-page-guide)
-[![CI](https://github.com/atendwa/filament-page-guide/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/atendwa/filament-page-guide/actions/workflows/ci.yml)
+[![Tests](https://github.com/atendwa/filament-page-guide/actions/workflows/tests.yml/badge.svg?branch=develop)](https://github.com/atendwa/filament-page-guide/actions/workflows/tests.yml)
+[![Quality](https://github.com/atendwa/filament-page-guide/actions/workflows/quality.yml/badge.svg?branch=develop)](https://github.com/atendwa/filament-page-guide/actions/workflows/quality.yml)
 
 Adds a **Guide** button to Filament pages. It opens a full-width modal that shows a Blade view explaining the page: what it
 is for, what each part means and how to use it. Guides are plain Blade views, so they live with your application and can use

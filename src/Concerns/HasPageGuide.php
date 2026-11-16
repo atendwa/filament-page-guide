@@ -26,7 +26,9 @@ trait HasPageGuide
     {
         $heading = $this->getHeading();
 
-        return ($heading instanceof Htmlable ? strip_tags($heading->toHtml()) : $heading) . ' Guide';
+        $title = $heading instanceof Htmlable ? strip_tags($heading->toHtml()) : $heading;
+
+        return $title . ' Guide';
     }
 
     public function getPageGuideIcon(): string
@@ -39,6 +41,11 @@ trait HasPageGuide
         $name = $this->getPageGuide();
 
         return filled($name) && view()->exists($name);
+    }
+
+    public function isMissingPageGuide(): bool
+    {
+        return ! $this->hasPageGuide();
     }
 
     /**
@@ -64,20 +71,19 @@ trait HasPageGuide
             ->modalSubmitAction(action: false)->modalIconColor('info')
             ->modalContent(fn () => $this->getPageGuideContent())->modal()
             ->label('Guide')->modalIcon($this->getPageGuideIcon())
-            ->modalCancelAction(
-                fn (Action $action): Action => $action
-                    ->extraAttributes(['class' => 'guide-close-btn'])
-                    ->icon('heroicon-o-x-mark')
-                    ->label('Close')
+            ->modalCancelAction(fn (Action $action): Action => $action
+                ->extraAttributes(['class' => 'guide-close-btn'])
+                ->icon('heroicon-o-x-mark')
+                ->label('Close')
             );
     }
 
     protected function resolvePageGuideView(): ?ViewContract
     {
-        if ($this->getPageGuide() === null || ! $this->hasPageGuide()) {
+        if ($this->isMissingPageGuide()) {
             return null;
         }
 
-        return View::file(View::getFinder()->find($this->getPageGuide()));
+        return View::file(View::getFinder()->find((string) $this->getPageGuide()));
     }
 }

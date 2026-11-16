@@ -26,7 +26,11 @@ class PageGuidePlugin implements Plugin
      */
     public function footer(array $lines): self
     {
-        config(['page-guide.footer' => array_values(array_filter($lines, fn (mixed $line): bool => is_string($line) && $line !== ''))]);
+        $footer = array_filter($lines, fn (mixed $line): bool => is_string($line) && $line !== '');
+
+        config([
+            'page-guide.footer' => array_values($footer),
+        ]);
 
         return $this;
     }

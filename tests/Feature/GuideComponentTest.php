@@ -14,11 +14,13 @@ it('renders the guide body and title without a footer or decoration by default',
 });
 
 it('shows the footer lines and decoration the application configures', function (): void {
-    PageGuidePlugin::make()->footer(['Kind regards,', null, 'help@example.test'])->decoration('guides::decoration');
+    PageGuidePlugin::make()
+        ->footer(['Kind regards,', null, 'help@example.test'])
+        ->decoration('guides::decoration');
 
     $html = view('guides::widgets')->render();
 
     expect($html)->toContain('Kind regards,')
-        ->toContain('help@example.test')
-        ->toContain('data-test="decoration"');
+        ->toContain('data-test="decoration"')
+        ->toContain('help@example.test');
 });
